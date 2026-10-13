@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#080a0f">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Kurdish TV">
+  <meta name="description" content="Kurdish TV live channel guide and player.">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icon-180.png">
+  <link rel="stylesheet" href="app.css">
+  <title>Kurdish TV</title>
+</head>
+<body>
+  <main class="app" id="app">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">K</span><span>KURDISH <b>TV</b></span></div>
+      <div class="top-actions">
+        <button class="top-btn" id="guideBtn" aria-label="Channels">☷ <span>Channels</span></button>
+        <div class="aspect-wrap">
+          <button class="top-btn" id="aspectBtn" aria-expanded="false">Aspect</button>
+          <select id="aspectSelect" class="aspect-select" aria-label="Aspect ratio"></select>
+        </div>
+        <button class="top-btn square" id="fullBtn" aria-label="Fullscreen">⛶</button>
+      </div>
+    </header>
+
+    <section class="screen" id="screen">
+      <div class="video-stage" id="videoStage">
+        <video id="video" playsinline webkit-playsinline preload="none"></video>
+        <div class="standby" id="standby">
+          <div class="standby-logo">K</div>
+          <div class="standby-title">Kurdish TV</div>
+          <div class="standby-sub" id="standbyText">Choose a channel to start watching</div>
+          <button class="play-cta" id="startBtn">▶ Start watching</button>
+        </div>
+        <div class="busy hidden" id="busy"><i></i><span>TUNING IN</span></div>
+        <div class="toast hidden" id="toast"></div>
+        <button class="screen-hit left-hit" id="prevHit" aria-label="Previous channel">‹</button>
+        <button class="screen-hit right-hit" id="nextHit" aria-label="Next channel">›</button>
+        <button class="center-play hidden" id="centerPlay" aria-label="Play">▶</button>
+        <div class="live-pill"><i></i> LIVE</div>
+      </div>
+      <div class="channel-strip">
+        <div class="channel-logo" id="channelLogo">K</div>
+        <div class="channel-copy">
+          <div class="channel-kicker"><span id="channelNum">01</span><span class="dot">•</span><span id="channelGroup">CHANNEL GUIDE</span></div>
+          <h1 id="channelName">Kurdish TV</h1>
+          <div class="quality" id="quality">Select a channel</div>
+        </div>
+        <button id="favBtn" class="fav-btn" aria-label="Add to favourites">☆</button>
+      </div>
+      <div class="controls">
+        <button id="playBtn" aria-label="Play or pause">▶</button>
+        <button id="muteBtn" aria-label="Mute">🔊</button>
+        <input id="volume" type="range" min="0" max="100" value="80" aria-label="Volume">
+        <span class="control-spacer"></span>
+        <button id="infoBtn" aria-label="Channel information">ⓘ</button>
+        <button id="retryBtn" aria-label="Retry stream">↻</button>
+      </div>
+      <div class="arrow-hint">‹ › channel <span>·</span> ▲ ▼ volume</div>
+    </section>
+
+    <section class="guide" id="guide" aria-label="Channel guide">
+      <div class="guide-head">
+        <div class="guide-title-row"><div><div class="eyebrow">LIVE TV</div><h2>Channel guide</h2></div><button class="close-btn" id="closeGuide" aria-label="Close guide">×</button></div>
+        <label class="search"><span>⌕</span><input id="search" type="search" placeholder="Search channels" autocomplete="off"></label>
+        <div class="tabs" id="tabs"></div>
+      </div>
+      <div class="channel-list" id="channelList"></div>
+      <footer class="guide-foot"><span id="count">35 channels</span><span>Open streams • Internet required</span></footer>
+    </section>
+    <div class="scrim hidden" id="scrim"></div>
+    <div class="error-card hidden" id="errorCard"><div class="error-icon">!</div><b>Stream unavailable</b><span id="errorText">This channel may be offline or restricted.</span><button id="errorRetry">Try again</button></div>
+  </main>
+  <script src="channels.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
